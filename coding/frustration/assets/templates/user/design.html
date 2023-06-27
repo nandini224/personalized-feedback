@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .menu table{
+          width:100%;
+          text-align:center;
+
+          }
+          .menu table td:hover{
+          background:rgb(0,128,0);
+
+          }
+          .menu table td{
+          background:rgb(0,128,128);
+
+         }
+          .menu table,.menu table th,.menu table td {
+    border: 1px solid rgb(255, 153, 153,0.5);
+    border-collapse: collapse;
+
+}
+.menu table th,.menu table  td {
+    padding: 15px;
+
+    }
+
+    .background-image{
+          position: fixed;
+          right:0;
+          left:0;
+          height: 1000px;
+               z-index:;
+
+          background:url("{% static 'image7.png' %}");
+   background-repeat: no-repeat;
+    background-size: auto;
+          background-size: 100%100%;
+          filter: blur(px);
+          z-index:auto;
+          display: block;
+          float:left;
+
+          }
+          .topic h1{
+          color:orange;
+          padding:2px;
+          text-align:center;
+          border-style:none;
+          height:100px;
+          width:1330px;
+          float:left;
+
+
+          }
+          .mainholder{
+
+          position:relative;
+          top:150px;
+          left:50px;
+          z-index:999;
+          float:left;
+          }
+          .marqee{
+border-style:solid;
+height:110px;
+width:1330px;
+background:rgba(255, 0, 0,0.5);
+margin-top:px;
+color:yellow;
+float:left;
+z-index:;
+}
+
+    </style>
+</head>
+<body>
+<div class="background-image">
+    <div class="topic"><h1 style="margin-top:10px;">PERSONALIZED AFFECTIVE FEEDBACK TO ADDRESS STUDENTS’ FRUSTRATION IN ITS</h1></div>
+<div class="menu">
+        <table>
+            <tr>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'mydetails' %}">MY DETAILS</a></td>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'userpage' %}"> HOME PAGE</a></td>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'updatemydetails' %}"> UPDATE DETAILS</a></td>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'selectsessionpage' %}"> MOTIVATIONAL MESSAGE</a></td>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'nonselectsessionpage' %}"> NON MOTIVATIONAL MESSAGE</a></td>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'viewnotification' %}"> NOTIFICATION</a></td>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'feedback' %}"> FEEDBACK</a></td>
+                <td><a  style="color:yellow;text-decoration: none;" href="{% url 'index' %}">LOGOUT</a></td>
+
+
+
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+<div class="marqee">
+<marqee >PERSONALIZED AFFECTIVE FEEDBACK TO ADDRESS STUDENTS’ FRUSTRATION IN ITS</marqee>
+</div>
+<div class="mainholder">
+{% block userblock %}
+{% endblock %}
+</div>
+
+</body>
+</html>

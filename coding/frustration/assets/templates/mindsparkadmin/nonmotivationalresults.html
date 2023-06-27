@@ -1,0 +1,91 @@
+{% extends 'mindsparkadmin/admindesign.html' %}
+{% block userblock %}
+{% load staticfiles %}
+
+<style>
+     .result{
+    position: absolute;
+    top:23px;
+    left:350px;
+    padding:10px;
+    width:500px;
+}
+
+.result table{
+    width:30em;
+    text-align:center;
+    //border-collapse:collapse;
+    border-spacing:1px;
+    background:;
+}
+
+.result table tr th{
+    color:;
+}
+.result table tr th{
+background:
+padding:10px;
+}
+.result table tr td{
+background:rgb(0, 204, 102);
+padding:27px;
+}
+.result table tr:hover td{
+background:r);
+}
+.asa{
+border-style:none;
+height:300px;
+width:300px;
+margin-top:100px;
+background: url("{% static 'image23.gif' %}");
+ background-size: 100%100%;
+
+}
+.ads{
+border-style:solid;
+height:370px;
+width:340px;
+margin-top:100px;
+background: url("{% static 'image9.gif' %}");
+ background-size: 100%100%;
+ margin-left:900px;
+ margin-top:-340px;
+
+}
+.message{
+border-style:solid;
+height:50px;
+margin-left:00px;
+width:300px;
+margin-top:-400px;
+background:red;
+}
+
+</style>
+<div class="result">
+<table>
+ <tr>
+        <td style="background:green;color:yellow">SESSION</td>
+        <TD style="background:green;color:yellow">AVERAGE</TD>
+
+    </tr>
+    <tr> <td>SESSTION ONE</td>
+    <td>{{objects.0.s1}}</td></tr>
+    <tr><td>SEEEION TWO</td>
+    <td>{{objects.0.s2}}</td></tr>
+    <tr><td>SESSION THREE</td>
+     <td>{{objects.0.s3}}</td></tr>
+    <tr><td>SESSION FOUR</td>
+        <td>{{objects.0.s4}}</td></tr>
+    <tr><td>SESSION FIVE</td>
+      <td>{{objects.0.s5}}</td></tr>
+    </tr>
+
+</table>
+
+</div>
+<div class="asa"></div>
+<div class="ads"></div>
+<div class="message"> <h3 style="color:yellow">NON MOTIVATIONAL MESSAGE</h3></div>
+{% endblock %}

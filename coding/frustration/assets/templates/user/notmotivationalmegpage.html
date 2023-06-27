@@ -1,0 +1,114 @@
+{% extends 'user/design.html' %}
+{% block userblock %}
+{% load staticfiles %}
+<style>
+   .question{
+   border-style:solid;
+   height:200px;
+   width:800px;
+   background:rgb(50,205,50);
+   margin-top:-20px;
+   }
+   .one{
+color:green;
+background-color: #ccc;
+ }
+ input[type="radio"]:checked:before {
+    content: "";
+    display: block;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: red;
+}
+.two{
+border-style:solid;
+height:300px;
+width:300px;
+margin-left:890px;
+margin-top:-210px;
+ background: url("{% static 'image21.jpg' %}");
+ background-size: 100%100%;
+}
+.any{
+border-style:solid;
+height:130px;
+width:350px;
+margin-top:-60px;
+background: url("{% static 'image20.jpg' %}");
+ background-size: 100%100%;
+ margin-left:200px;
+}
+.message{
+border-style:solid;
+height:50px;
+margin-left:400px;
+width:300px;
+margin-top:-435px;
+background:red;
+}
+
+
+</style>
+
+
+<div class="question">
+<label style="color:black;margin-left:350px;font-size:30px;">
+{% if se == 'sessionone' %}
+{{request.session.total}}
+{% elif se == 'sessiontwo' %}
+{{request.session.name1}}
+{% elif se == 'sessionthree' %}
+{{request.session.name2}}
+{% elif se == 'sessionfour' %}
+{{request.session.name3}}
+{% elif se == 'sessionfive' %}
+{{request.session.name4}}
+{% endif %}
+</label>
+<br>
+
+
+    <label style="color:blue">{{view_question.0}}</label>
+<form method="post" id="myForm" action="{% url 'notmotivationalmegpage' next se %}">
+    {% csrf_token %}
+
+    <input style="color:green" type="radio" name="button" value="{{view_question.1}}" class="one"><label style="color:blue">{{view_question.1}}</label><br>
+    <input type="radio" name="button" value="{{view_question.2}}" ><label style="color:blue">{{view_question.2}}</label><br>
+    <input type="radio" name="button" value="{{view_question.3}}"><label style="color:blue">{{view_question.3}}</label><br>
+
+    <input type="hidden" name="val" id="userans"><br><br>
+    <tr>
+     <td style="" colspan="2"><input type="submit" name="submit" value="SUBMIT" style="background:red;color:white;margin-left:350px;"></td>
+    </tr>
+
+</form>
+</table>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+var answe='{{view_question.4}}';
+$('#myForm input').on('change', function() {
+   var ans=$('input[name=button]:checked', '#myForm').val();
+   if(ans==answe){
+   $('#userans').val('correct');
+   $("#right").css("visibility", "visible");
+   $("#wrong").css("visibility", "collapse");
+   alert(answe);
+   }
+   else{
+   $('#userans').val('wrong');
+   $("#right").css("visibility", "collapse");
+   $("#wrong").css("visibility", "visible");
+   alert('wrong');
+
+   }
+});
+</script>
+<div class="two"></div>
+<div class="any"></div>
+<div class="message"> <h3 style="color:yellow">NON MOTIVATIONAL MESSAGE</h3></div>
+{% endblock %}

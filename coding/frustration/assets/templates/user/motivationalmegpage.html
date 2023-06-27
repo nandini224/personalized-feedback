@@ -1,0 +1,194 @@
+{% extends 'user/design.html' %}
+{% block userblock %}
+{% load staticfiles %}
+
+<style >
+
+ .question{
+   border-style:solid;
+   height:250px;
+   width:800px;
+   background:rgb(50,205,50);
+   margin-top:-20px;
+   }
+ input[type="radio"]:checked:before {
+    content: "";
+    display: block;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: red;
+}
+    .two{
+border-style:solid;
+height:300px;
+width:300px;
+margin-left:890px;
+margin-top:-210px;
+ background: url("{% static 'image21.jpg' %}");
+ background-size: 100%100%;
+}
+.any{
+border-style:solid;
+height:100px;
+width:350px;
+margin-top:-60px;
+background: url("{% static 'image20.jpg' %}");
+ background-size: 100%100%;
+ margin-left:200px;
+}
+.message{
+border-style:solid;
+height:50px;
+margin-left:400px;
+width:250px;
+margin-top:-450px;
+background:red;
+}
+</style>
+
+
+<div class="question">
+<label style="color:black;margin-left:350px;font-size:30px;">
+    {% if se == 'sessionone' %}
+{{request.session.total}}
+{% elif se == 'sessiontwo' %}
+{{request.session.name1}}
+{% elif se == 'sessionthree' %}
+{{request.session.name2}}
+{% elif se == 'sessionfour' %}
+{{request.session.name3}}
+{% elif se == 'sessionfive' %}
+{{request.session.name4}}
+{% endif %}
+</label>
+
+
+
+<br>
+<table>
+    <tr id="right" style="visibility:collapse"><td><p id="correct"></p></td></tr>
+    <tr id="wrong" style="visibility:collapse"><td><p id="incorrect">Not Bad..Try Hard..</p></td></tr>
+</table>
+    <label style="color:blue">{{view.0}}</label><br>
+<form method="post" id="myForm" action="{% url 'motivationalmegpage'   next se   %}">
+    {% csrf_token %}
+<input type="radio" name="button" value="{{view.1}}"><label style="color:blue"> {{view.1}}</label><br>
+    <input type="radio" name="button" value="{{view.2}}"><label style="color:blue">{{view.2}}</label><br>
+<input type="radio" name="button" value="{{view.3}}"><label style="color:blue"> {{view.3}}</label><br>
+    <input type="hidden" name="val" id="userans"><br><br>
+    <tr>
+     <td style="" colspan="2"><input type="submit" name="submit" value="SUBMIT" style="background:red;color:white;margin-left:350px;"></td>
+    </tr>
+</form>
+</table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+var answe='{{view.4}}';
+$('#myForm input').on('change', function() {
+   var ans=$('input[name=button]:checked', '#myForm').val();
+   if(ans==answe){
+        $('#userans').val('correct');
+        var v="{{se}}";
+        var sol=0;
+        if(v=="sessionone"){
+            sol={{request.session.total}};
+        }else if(v=="sessiontwo"){
+            sol={{request.session.name1}};
+        }else if(v=="sessionthree"){
+            sol={{request.session.name2}};
+        }else if(v=="sessionfour"){
+            sol={{request.session.name3}};
+        }else if(v=="sessionfive"){
+            sol={{request.session.name4}};
+        }
+        if(sol==0){
+
+            $("#correct").text("very well,good try");
+        }
+        else if(sol==1){
+            $("#correct").text("you are alread correct attempte in previous  question, well done");
+        }
+        else if(sol==2){
+            $("#correct").text("excellent");
+        }
+        else if(sol==3){
+            $("#correct").text("well done...keep it up...");
+        }
+        else if(sol==4){
+            $("#correct").text("you answered for previous all questions.well done...keep it up...");
+        }
+        else if(sol==5){
+            $("#correct").text("very good ,well effort");
+        }
+        else if(sol==6){
+            $("#correct").text("wow, exciting your performence");
+        }
+        else if(sol==7){
+            $("#correct").text("very well.keep it up...");
+        }
+        else if(sol==8){
+            $("#correct").text("you answered for previous all questions.well done...keep it up...");
+        }
+        else if(sol==9){
+            $("#correct").text("you answered for previous all questions.well done...keep it up...");
+        }
+        $("#right").css("visibility", "visible");
+        $("#wrong").css("visibility", "collapse");
+   }
+   else{
+
+   var v="{{se}}";
+        var sol=0;
+        if(v=="sessionone"){
+            sol={{request.session.total}};
+        }else if(v=="sessiontwo"){
+            sol={{request.session.name1}};
+        }
+        if(sol==0){
+            $("#incorrect").text("tried hard..better attend next question");
+        }
+        else if(sol==1){
+            $("#incorrect").text("you already attend 1 question correctly..!! you tried hard..better attend next question");
+        }
+        else if(sol==2){
+            $("#incorrect").text("good effort,well try next time");
+        }
+        else if(sol==3){
+            $("#incorrect").text("Not Bad..Try Hard..");
+        }
+        else if(sol==4){
+            $("#incorrect").text("you answered for 4 answers..dont worry go ahead");
+        }
+        else if(sol==5){
+            $("#incorrect").text("tried hard..better attend next question");
+        }
+        else if(sol==6){
+            $("#incorrect").text("tried hard..better attend next question");
+        }
+        else if(sol==7){
+            $("#incorrect").text("Not Bad..Try Hard..");
+        }
+        else if(sol==8){
+            $("#incorrect").text("good effort,well try next time");
+        }
+        else if(sol==9){
+            $("#incorrect").text("you answered for 9 answers..dont worry go ahead");
+        }
+
+   $('#userans').val('wrong');
+   $("#right").css("visibility", "collapse");
+   $("#wrong").css("visibility", "visible");
+   }
+});
+</script>
+
+<div class="two"></div>
+<div class="any"></div>
+<div class="message"> <h3 style="color:yellow">MOTIVATIONAL MESSAGE</h3></div>
+{% endblock %}

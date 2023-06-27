@@ -1,0 +1,71 @@
+{% extends 'user/design.html' %}
+{% block userblock %}
+{% load staticfiles %}
+
+
+<style>
+   .viewnotification{
+     position: absolute;
+    top:-50px;
+    left:px;
+    padding:5px;
+    height:350px;
+    width:750px;
+    overflow:scroll;
+    float:left;
+    }
+    .viewnotification table{
+    width:50em;
+    text-align:center;
+
+    border-spacing:1px;
+    background:;
+}
+
+
+.viewnotification table tr th{
+background:rgb(0, 204, 102);
+padding:5px;
+}
+.viewnotification table tr td{
+background:rgba(0,255,127,0.3);
+padding:5px;
+}
+.viewnotification table tr:hover td{
+background:rgba(0,0,255,0.5);
+}
+.any{
+border-style:solid;
+ border-width:1px;
+ height:380px;
+ width:360px;
+ margin-top:-50px;
+ margin-left:830px;
+ background: url("{% static 'image13.gif' %}");
+ background-size: 100%100%;
+float:left;
+}
+
+</style>
+
+<div class="viewnotification">
+<table>
+    <tr>
+        <th>DATE</th>
+        <th>NOTIFICATION</th>
+    </tr>
+
+<tr>
+{% for o in object %}
+    <td style="color:yellow"> {{o.date}}<br></td>
+    <td style="color:yellow">{{o.notifications}}</td>
+
+
+
+
+</tr>
+    {% endfor %}
+</table>
+    </div>
+<div class="any"></div>
+{% endblock %}
